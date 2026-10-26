@@ -1,0 +1,3 @@
+# Defence in depth: includes/ sits outside the document root, but if the whole
+# project is ever served (for example from XAMPP's htdocs), deny every file here.
+Require all denied

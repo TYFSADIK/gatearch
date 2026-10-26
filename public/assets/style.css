@@ -1,0 +1,106 @@
+:root {
+  --bg: #f4f6f8;
+  --panel: #fff;
+  --side: #14213d;
+  --side-text: #dfe6f2;
+  --text: #1b2533;
+  --muted: #5f6b7a;
+  --line: #dbe1e8;
+  --accent: #1d5fd1;
+  --danger: #b42318;
+  --ok-bg: #e8f6ee;
+  --ok: #146c43;
+  --err-bg: #fdecea;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+a { color: var(--accent); }
+h1 { font-size: 1.6rem; margin: 0 0 16px; }
+h2 { font-size: 1.15rem; margin: 0 0 12px; }
+.muted { color: var(--muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Layout: sidebar + main, CSS Grid */
+body.app { display: grid; grid-template-columns: 230px 1fr; min-height: 100vh; }
+.sidebar { background: var(--side); color: var(--side-text); padding: 20px 14px; display: flex; flex-direction: column; gap: 18px; }
+.brand { color: #fff; font-weight: 800; font-size: 1.3rem; text-decoration: none; letter-spacing: 0.02em; }
+.sidebar nav { display: grid; gap: 2px; }
+.sidebar nav a { color: var(--side-text); text-decoration: none; padding: 8px 10px; border-radius: 6px; }
+.sidebar nav a:hover { background: rgba(255,255,255,0.08); }
+.sidebar nav a[aria-current="page"] { background: rgba(255,255,255,0.16); color: #fff; font-weight: 600; }
+.who { margin-top: auto; display: grid; gap: 2px; font-size: 0.9rem; }
+.who small { opacity: 0.7; text-transform: capitalize; }
+.who .link { color: var(--side-text); padding: 0; }
+.content { padding: 28px clamp(16px, 4vw, 40px); max-width: 1200px; width: 100%; min-width: 0; }
+
+/* Login */
+body.guest .content { display: grid; place-items: center; min-height: 100vh; max-width: none; }
+.login-card { width: min(380px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 28px; }
+.login-card h1 { margin-bottom: 2px; }
+.login-card form { display: grid; gap: 14px; margin-top: 18px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.stats div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; color: var(--muted); font-size: 0.9rem; }
+.stats span { display: block; color: var(--text); font-size: 1.6rem; font-weight: 800; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; }
+caption { text-align: left; padding: 12px 14px 0; font-weight: 700; }
+th, td { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+tbody tr:last-child td { border-bottom: none; }
+.actions { text-align: right; white-space: nowrap; }
+.actions > * { display: inline-block; margin: 0 0 0 12px; }
+.empty { color: var(--muted); }
+
+/* Forms */
+label { display: grid; gap: 4px; font-weight: 600; font-size: 0.9rem; }
+label small { font-weight: 400; color: var(--muted); }
+input, select, textarea { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--text); width: 100%; }
+input:focus-visible, select:focus-visible, textarea:focus-visible, .btn:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+input[aria-invalid="true"] { border-color: var(--danger); }
+.field-error { color: var(--danger); font-weight: 500; }
+.btn { font: inherit; font-weight: 600; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--text); cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.link { font: inherit; background: none; border: none; color: var(--accent); cursor: pointer; text-decoration: underline; padding: 0; }
+.link.danger { color: var(--danger); }
+.split { display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: start; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-bottom: 18px; }
+.panel form { display: grid; gap: 12px; }
+.panel form.inline { grid-template-columns: 1fr 1fr auto; align-items: end; }
+.search { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+.search input { max-width: 320px; }
+.search select { width: auto; }
+form.grade { display: flex; gap: 8px; align-items: center; margin: 0; }
+form.grade input { width: 100px; }
+.letter { font-weight: 700; min-width: 4em; }
+.pager { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 20px; }
+.pager a, .pager span { padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; text-decoration: none; background: var(--panel); }
+.pager span { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Flash messages */
+.flash { padding: 10px 14px; border-radius: 8px; background: var(--ok-bg); color: var(--ok); margin: 0 0 16px; }
+.flash.error { background: var(--err-bg); color: var(--danger); }
+.flash ul { margin: 0; padding-left: 18px; }
+
+/* Course detail */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 0 0 20px; }
+.facts div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.facts dt { color: var(--muted); font-size: 0.82rem; }
+.facts dd { margin: 0; font-weight: 700; }
+
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; }
+  .split .panel { order: -1; }
+  .panel form.inline { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  body.app { grid-template-columns: 1fr; }
+  .sidebar { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 12px 16px; gap: 10px; }
+  .sidebar nav { display: flex; flex-wrap: wrap; gap: 4px; width: 100%; }
+  .sidebar nav a { padding: 6px 8px; font-size: 0.9rem; }
+  .who { margin: 0 0 0 auto; grid-auto-flow: column; gap: 10px; align-items: center; }
+  .who small { display: none; }
+}
